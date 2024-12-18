@@ -1,0 +1,9 @@
+Django==5.0.0
+djangorestframework==3.14.0
+django-allauth==0.52.0
+django-celery-results==2.5.1
+django-celery-beat==2.6.0
+django-crispy-forms==1.14.0
+django-taggit==2.1.0
+redis==5.0.0
+stripe==5.0.0
