@@ -32,8 +32,7 @@
                 <li><a href="{% url 'order' %}">Place an Order</a></li>
                 <li><a href="{% url 'success' %}">Order Confirmation</a></li>
                 <li><a href="{% url 'booking' %}">Book a meeting Room</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#products">Products</a></li>
+
                 
                 {% if user.is_authenticated %}
                     <a href="#" class="logout-button" id="logout-link">Logout</a>
