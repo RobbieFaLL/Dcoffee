@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% load static %}
+{% load custom_filters %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Successful</title>
+</head>
+<body>
+
+    <h1>Order Successful!</h1>
+    <p>Your order has been placed successfully.</p>
+
+    <h2>Order Details:</h2>
+    <ul>
+        <li>Coffee: {{ coffee_order.coffee }}</li>
+        <li>Milk: {{ coffee_order.milk }}</li>
+        {% if coffee_order.shot %}
+            <li>Shot: {{ coffee_order.shot }}</li>
+        {% endif %}
+        {% if coffee_order.flavours %}
+            <li>Flavours: {{ coffee_order.flavours | join:", " }}</li>
+        {% endif %}
+    </ul>
+
+    <h3>Total Price: ${{ total_price }}</h3>
+
+    <!-- Link to return to home -->
+    <a href="{% url 'index' %}">Back to Home</a>
+
+    <h3>View a Previous Order:</h3>
+    <!-- Form to select a previous order -->
+    <form action="{% url 'view_order' %}" method="GET">
+        <label for="order_select">Select Order:</label>
+        <select name="order_select" id="order_select">
+            {% for order in all_orders %}
+                <option value="{{ order.id }}">{{ order.coffee }} - {{ order.milk }} ({{ order.created_at|date:"Y-m-d" }})</option>
+            {% endfor %}
+        </select>
+        <button type="submit">View Order</button>
+    </form>
+
+    <footer>
+        <p>&copy; 2024 DCoffee Premium. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>
+{%endblock%}

@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% load static %}
+{% load custom_filters %}
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Your Coffee</title>
+</head>
+<body>
+
+    <h2><a href="/">Back Home</a></h2>
+
+    <h1>Menu Options:</h1>
+
+    <form method="POST" id="order-form">
+        {% csrf_token %}
+        
+        <!-- Coffee Selection -->
+        <label for="id_coffee">Coffee</label>
+        {{ form.coffee }}
+
+        <!-- Espresso Shot Options (Only visible if Espresso is selected) -->
+        <div id="espresso-shots" style="display:none;">
+            <label for="id_shot">Shot</label>
+            {{ form.shot }}
+        </div>
+
+        <!-- Milk Selection -->
+        <label for="id_milk">Milk</label>
+        {{ form.milk }}
+
+        <!-- Half and Half Milk Options (Only visible if 'Half and Half' is selected) -->
+        <fieldset id="half-and-half-options" style="display:none;">
+            <legend>Choose Two Milks for Half and Half</legend>
+            <label for="id_milk_option1">Milk Option 1:</label>
+            {{ form.milk_option1 }}
+
+            <label for="id_milk_option2">Milk Option 2:</label>
+            {{ form.milk_option2 }}
+        </fieldset>
+
+        <!-- Flavouring Selection (Max 3 flavours) -->
+        <fieldset>
+            <legend>Flavouring (75p each, max 3)</legend>
+            <div class="checkbox-group">
+                {% for choice in form.flavours %}
+                    <div>
+                        <label for="{{ choice.id_for_label }}">{{ choice.choice_label }}</label>
+                        {{ choice|add_class:"flavour-checkbox" }}  <!-- Add class for JS -->
+                    </div>
+                {% endfor %}
+            </div>
+        </fieldset>
+
+        <button type="submit">Submit</button>
+    </form>
+
+<!-- Flavour Selection Warning Modal -->
+<div id="flavourWarningModal" class="modal">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <p>You can select up to 3 flavours only.</p>
+    </div>
+</div>
+
+
+</body>
+</html>
+{%endblock%}

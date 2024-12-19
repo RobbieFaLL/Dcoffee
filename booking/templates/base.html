@@ -1,0 +1,55 @@
+{% load static %}
+{% load custom_filters %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <style>
+        #hero {
+            background: url({% static 'images/dcoffee.png' %}) no-repeat center center/cover;
+            height: 60vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            text-align: center;
+            padding: 0 20px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header and Navbar -->
+    <header>
+        <nav>
+            <div class="logo">
+                <h1><a href="{% url 'index' %}" style="color: #ffffff;">Dcoffee</a></h1>
+            </div>
+            <ul>
+                <li><a href="{% url 'index' %}">Home</a></li>
+                <li><a href="{% url 'order' %}">Place an Order</a></li>
+                <li><a href="{% url 'success' %}">Order Confirmation</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#products">Products</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+ 
+        {% block content %}{% endblock content %}
+
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 DCoffee Premium. All rights reserved.</p>
+        <a href="{% url 'privacy' %}">Terms of Service</a> |
+        <a href="{% url 'terms' %}">Terms of Service</a>
+    </footer>
+
+</body>
+<script src="{% static 'js/order.js' %}"></script>
+</html>

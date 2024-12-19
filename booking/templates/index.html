@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dcoffee - Home</title>
+</head>
+
+    <header>
+
+    </header>
+
+    <main>
+        <section id="hero">
+            <!-- Move the Welcome text below the logo -->
+            <div class="hero-content">
+                <h2>Welcome to Dcoffee</h2> <!-- Changed text color for visibility -->
+                <p>Your perfect brew, every time.</p>
+                <a href="#products" class="btn">Shop Now</a>
+            </div>
+        </section>
+
+        <section id="about">
+            <h2>About Us</h2>
+            <p>Dcoffee is your trusted source for premium coffee blends. We believe in the art of brewing and delivering exceptional flavor with every cup.</p>
+        </section>
+
+        <section id="products">
+            <h2>Featured Products</h2>
+            <div class="product-grid">
+                <div class="product">
+                    <img src="{% static 'images/coffee1.png' %}" alt="A smooth blend coffee for the perfect start to your day">
+                    <h3>Morning Bliss</h3>
+                    <p>A smooth blend for the perfect start to your day.</p>
+                </div>
+                <div class="product">
+                    <img src="{% static 'images/coffee2.png' %}" alt="A rich and mellow coffee for relaxing in the evening">
+                    <h3>Evening Relax</h3>
+                    <p>Unwind with a rich and mellow roast.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+{% endblock %}
