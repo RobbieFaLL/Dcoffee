@@ -2,19 +2,9 @@
 
 {% block content %}
 {% load static %}
-{% load custom_filters %}
+<h1>Order Successful!</h1>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Order Successful</title>
-</head>
-<body>
-
-    <h1>Order Successful!</h1>
+{% if coffee_order %}
     <p>Your order has been placed successfully.</p>
 
     <h2>Order Details:</h2>
@@ -29,27 +19,23 @@
         {% endif %}
     </ul>
 
-    <h3>Total Price: ${{ total_price }}</h3>
+    <h3>Total Price: £{{ total_price }}</h3>
+{% else %}
+    <p>No orders placed yet. Place an order to see details here.</p>
+{% endif %}
 
-    <!-- Link to return to home -->
-    <a href="{% url 'index' %}">Back to Home</a>
+<!-- Link to return to home -->
+<a href="{% url 'index' %}">Back to Home</a>
 
-    <h3>View a Previous Order:</h3>
-    <!-- Form to select a previous order -->
-    <form action="{% url 'view_order' %}" method="GET">
-        <label for="order_select">Select Order:</label>
-        <select name="order_select" id="order_select">
-            {% for order in all_orders %}
-                <option value="{{ order.id }}">{{ order.coffee }} - {{ order.milk }} ({{ order.created_at|date:"Y-m-d" }})</option>
-            {% endfor %}
-        </select>
-        <button type="submit">View Order</button>
-    </form>
-
-    <footer>
-        <p>&copy; 2024 DCoffee Premium. All rights reserved.</p>
-    </footer>
-
-</body>
-</html>
-{%endblock%}
+<h3>View a Previous Order:</h3>
+<!-- Form to select a previous order -->
+<form action="{% url 'view_order' %}" method="GET">
+    <label for="order_select">Select Order:</label>
+    <select name="order_select" id="order_select">
+        {% for order in all_orders %}
+            <option value="{{ order.id }}">{{ order.coffee }} - {{ order.milk }} ({{ order.created_at|date:"Y-m-d" }})</option>
+        {% endfor %}
+    </select>
+    <button type="submit">View Order</button>
+</form>
+{% endblock %}

@@ -1,19 +1,10 @@
 {% extends 'base.html' %}
 
-
 {% block content %}
 {% load static %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Order Details</title>
-</head>
-<body>
+<h1>Order Details</h1>
 
-    <h1>Order Details</h1>
+{% if coffee_order %}
     <ul>
         <li>Coffee: {{ coffee_order.coffee }}</li>
         <li>Milk: {{ coffee_order.milk }}</li>
@@ -24,14 +15,10 @@
             <li>Flavours: {{ coffee_order.flavours | join:", " }}</li>
         {% endif %}
     </ul>
+{% else %}
+    <p>No details available for this order.</p>
+{% endif %}
 
-    <!-- Home button -->
-    <a href="{% url 'index' %}" class="home-button">Back to Home</a>
-
-    <footer>
-        <p>&copy; 2024 DCoffee Premium. All rights reserved.</p>
-    </footer>
-
-</body>
-</html>
-{%endblock%}
+<!-- Home button -->
+<a href="{% url 'index' %}" class="home-button">Back to Home</a>
+{% endblock %}

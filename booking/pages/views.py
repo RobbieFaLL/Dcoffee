@@ -20,8 +20,18 @@ def order_view(request):
 
 # Success page view after an order is placed
 def success_view(request):
-    # Get the last order (or modify this logic as needed)
+    # Get the last order or set to None if no orders exist
     coffee_order = CoffeeOrder.objects.last()
+    
+    # Handle the case where no orders exist
+    if not coffee_order:
+        # Pass empty data to the template
+        return render(request, 'success.html', {
+            'coffee_order': None,
+            'total_price': 0,
+            'flavours_json': None,
+            'all_orders': CoffeeOrder.objects.all(),
+        })
     
     # Price calculation logic
     prices = {
@@ -61,6 +71,7 @@ def success_view(request):
         'flavours_json': coffee_order.flavours,
         'all_orders': all_orders,  # Pass all previous orders to the template
     })
+
 
 # View page for a specific order selected by the user
 def view_order(request):
