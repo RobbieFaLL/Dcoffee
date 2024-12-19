@@ -1,0 +1,9 @@
+<!-- booking_success.html -->
+{% extends 'base.html' %}
+
+{% block content %}
+{% load static %}
+    <h1>Booking Successful</h1>
+    <p>Your booking has been confirmed. We look forward to seeing you!</p>
+    <a href="{% url 'index' %}">Back to Home</a>
+{% endblock %}

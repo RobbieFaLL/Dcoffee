@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% load static %}
+    <h2>Book a Meeting Room</h2>
+
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Book Now</button>
+    </form>
+
+    <h3>Room Availability</h3>
+    <form method="post">
+        {% csrf_token %}
+        <label for="start_time">Start Time:</label>
+        <input type="datetime-local" name="start_time" id="start_time" required>
+        <label for="end_time">End Time:</label>
+        <input type="datetime-local" name="end_time" id="end_time" required>
+        <button type="submit">Check Availability</button>
+    </form>
+
+    <ul>
+        {% for room, status in availability.items %}
+            <li>{{ room }}: {{ status }}</li>
+        {% endfor %}
+    </ul>
+
+{% endblock %}
