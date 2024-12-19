@@ -6,6 +6,9 @@ body {
     color: #333;
     line-height: 1.6;
     background-color: #fdfaf6;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 }
 
 a {
@@ -34,11 +37,6 @@ header .logo {
     margin-bottom: 20px; /* Space between logo and nav */
 }
 
-header .logo-img {
-    width: 150px; /* Smaller logo size */
-    height: auto;
-}
-
 header h1 {
     font-size: 2em;
     font-family: 'Georgia', serif;
@@ -54,7 +52,12 @@ header nav ul {
 }
 
 header nav ul li {
-    display: inline;
+    display: inline-block;
+    margin-right: 20px;
+}
+
+header nav ul li:last-child {
+    margin-right: 0;
 }
 
 header nav ul li a {
@@ -67,8 +70,26 @@ header nav ul li a:hover {
     color: #f0a500; /* Golden accent */
 }
 
+/* Logout Button Styling */
+.logout-button {
+    padding: 5px 10px;  /* Smaller padding */
+    font-size: 12px;     /* Smaller font size */
+    background-color: #007bff; /* Blue color (you can change it to match your theme) */
+    color: white;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
 
+.logout-button:hover {
+    background-color: #0056b3; /* Darker blue when hovering */
+}
 
+.logout-button:focus {
+    outline: none;  /* Removes focus outline */
+}
+
+/* Hero Section */
 #hero h2 {
     font-size: 2.5em;
     margin-bottom: 10px;
@@ -169,7 +190,7 @@ form {
     background-color: #fff;
     padding: 20px;
     margin: 20px auto;
-    max-width: 600px;
+    max-width: 100%;
     border-radius: 10px;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
 }
@@ -187,7 +208,10 @@ form label {
 }
 
 form select,
-form input[type="checkbox"] {
+form input[type="checkbox"],
+form input[type="text"],
+form input[type="email"],
+form input[type="password"] {
     width: 100%;
     padding: 10px;
     margin-bottom: 15px;
@@ -197,7 +221,10 @@ form input[type="checkbox"] {
 }
 
 form select:focus,
-form input[type="checkbox"]:focus {
+form input[type="checkbox"]:focus,
+form input[type="text"]:focus,
+form input[type="email"]:focus,
+form input[type="password"]:focus {
     border-color: #6f4e37;
     outline: none;
 }
@@ -294,6 +321,7 @@ footer {
     color: white;
     padding: 20px 0;
     text-align: center;
+    margin-top: auto;
 }
 
 footer p {
@@ -316,20 +344,31 @@ footer .social a:hover {
     color: #fff;
 }
 
-/* Home Button Style */
-.home-button {
-    display: inline-block;
-    padding: 10px 20px;
-    margin-top: 20px;
-    background-color: #6f4e37; /* Coffee brown */
-    color: white;
-    text-align: center;
-    text-decoration: none;
-    border-radius: 5px;
-    font-size: 16px;
-    transition: background-color 0.3s;
+/* Responsive Styles */
+@media (max-width: 768px) {
+    header nav ul {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    #hero {
+        height: 50vh;
+    }
+
+    .product-grid {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    }
 }
 
-.home-button:hover {
-    background-color: #f0a500; /* Golden accent on hover */
+@media (max-width: 600px) {
+    #about,
+    #products,
+    .product {
+        padding: 20px;
+    }
+
+    form {
+        margin: 10px;
+        padding: 15px;
+    }
 }

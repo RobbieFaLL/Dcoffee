@@ -175,3 +175,8 @@ NOTIFICATIONS_USE_JSONFIELD = True
 
 # Tagging settings (for tagging functionality)
 TAGGIT_CASE_INSENSITIVE = True
+
+# settings.py
+
+LOGIN_REDIRECT_URL = '/'  # The page users will be redirected to after logging in
+LOGOUT_REDIRECT_URL = '/'  # The page users will be redirected to after logging out
