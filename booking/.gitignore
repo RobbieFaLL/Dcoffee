@@ -1,20 +1,20 @@
-# Byte-compiled / optimized / DLL files
+# Python bytecode and cache files
 __pycache__/
 *.py[cod]
 *$py.class
 
-# Django-specific
+# Django-specific files
 *.log
 *.pot
 *.pyc
 *.pyo
+db.sqlite3  # Exclude SQLite database files
 *.sqlite3
+media/       # Exclude uploaded media files
+staticfiles/ # Exclude collected static files
 
-media/
-staticfiles/
-
-# Environments
-.env
+# Environment and virtual environments
+.env         # Environment variable files
 .venv/
 env/
 venv/
@@ -22,22 +22,26 @@ ENV/
 env.bak/
 venv.bak/
 
-# IDEs
-.idea/
-.vscode/
-*.swp
+# IDE-specific files
+.idea/       # IntelliJ IDEA
+.vscode/     # Visual Studio Code
+*.swp        # Swap files for Vim
 
-# Deployment
-*.dump
-*.backup
+# Deployment-related files
+*.dump       # Database dump files
+*.backup     # Backup files
 
-# Node.js (if applicable)
+# Node.js files (if Node.js is used)
 node_modules/
 
-# macOS
-.DS_Store
+# macOS-specific files
+.DS_Store    # macOS Finder metadata files
 
-# Windows
-Thumbs.db
-desktop.ini
-db.sqlite3
+# Windows-specific files
+Thumbs.db    # Image cache file
+desktop.ini  # Desktop metadata file
+
+# Miscellaneous
+*.bak        # Generic backup files
+*.orig       # Merge conflict backup files
+*.tmp        # Temporary files
