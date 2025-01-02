@@ -28,7 +28,7 @@ SECRET_KEY = 'django-insecure-dpgvzr#0apm0#rb5qy7ik6k0p75=0&y(82*$$%af*5$&h5a=_l
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['dcoffee.robertfall.uk','www.dcoffee.robertfall.uk']
+ALLOWED_HOSTS = ['dcoffee.robertfall.uk','www.dcoffee.robertfall.uk','165.22.125.172']
 
 # Application definition
 
