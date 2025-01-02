@@ -134,7 +134,7 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),  # Global static directory
 ]
 
-STATIC_ROOT = '/home2/dstatic/'
+STATIC_ROOT = '/home2/static/'
 
 
 # Default primary key field type
