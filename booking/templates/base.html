@@ -5,6 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
     <style>
         #hero {
@@ -40,29 +41,43 @@
 <body>
     <!-- Header and Navbar -->
     <header>
-        <div class="logo">
-            <h1>Dcoffee</h1>
-        </div>
-        <nav>
-            <div class="hamburger" id="hamburger-menu">
-                <div></div>
-                <div></div>
-                <div></div>
-            </div>
-            <ul class="menu" id="navbar-links">
-                <li><a href="{% url 'index' %}">Home</a></li>
-                <li><a href="{% url 'order' %}">Place an Order</a></li>
-                <li><a href="{% url 'success' %}">Order Confirmation</a></li>
-                <li><a href="{% url 'booking' %}">Book a meeting Room</a></li>
 
-                {% if user.is_authenticated %}
-                    <li><a href="#" class="logout-button" id="logout-link">Logout</a></li>
-                {% else %}
-                    <li><a href="{% url 'login' %}">Login</a></li>
-                    <li><a href="{% url 'signup' %}">Sign Up</a></li>
-                {% endif %}
-            </ul>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="{% url 'index' %}"><h1>Home</h1></a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'order' %}">Place an Order</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'success' %}">Order Confirmation</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'booking' %}">Book a meeting Room</a>
+                        </li>
+        
+                        {% if user.is_authenticated %}
+                            <li class="nav-item">
+                                <a class="nav-link" href="#" id="logout-link">Logout</a>
+                            </li>
+                        {% else %}
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'login' %}">Login</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'signup' %}">Sign Up</a>
+                            </li>
+                        {% endif %}
+                    </ul>
+                </div>
+            </div>
         </nav>
+ 
+        
     </header>
 
     <!-- Main Content -->
@@ -101,9 +116,12 @@
         logoutForm.submit();
     });
 
-    // Toggle mobile menu
-    document.getElementById('hamburger-menu').addEventListener('click', function() {
-        document.getElementById('navbar-links').classList.toggle('show');
+    document.getElementById("hamburger-menu").addEventListener("click", function() {
+        var menu = document.getElementById("navbar-links");
+        menu.classList.toggle("active");
     });
+
 </script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
 </html>

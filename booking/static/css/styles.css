@@ -23,52 +23,20 @@ h1, h2, h3 {
 }
 
 /* Header Styles */
-header {
-    background-color: #6f4e37; /* Coffee brown */
-    color: white;
-    padding: 20px;
-    display: flex;
-    justify-content: center; /* Center the nav and logo */
-    align-items: center;
-    flex-direction: column; /* Stack logo and nav items */
+header, header nav {
+    background-color: #6f4e37; /* Coffee brown background */
+    padding: 10px 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
-header .logo {
-    text-align: center;
-    margin-bottom: 20px; /* Space between logo and nav */
+/* Navbar Links Styling */
+.navbar-nav .nav-link {
+    color: white; /* Set specific link color */
+    transition: color 0.3s ease;
 }
 
-header h1 {
-    font-size: 2em;
-    font-family: 'Georgia', serif;
-    letter-spacing: 1px;
-    color: #333; /* Dark text color */
-}
-
-/* Navigation */
-header nav ul {
-    list-style: none;
-    display: flex;
-    gap: 20px;
-}
-
-header nav ul li {
-    display: inline-block;
-    margin-right: 20px;
-}
-
-header nav ul li:last-child {
-    margin-right: 0;
-}
-
-header nav ul li a {
-    color: white;
-    font-size: 1em;
-    transition: color 0.3s;
-}
-
-header nav ul li a:hover {
-    color: #f0a500; /* Golden accent */
+.navbar-nav .nav-link:hover {
+    color: #f0a500; /* Golden hover effect */
 }
 
 /* Logout Button Styling */
@@ -397,139 +365,12 @@ footer .footer-links li {
     display: inline-block;
 }
 
-footer .footer-links li a {
+footer .footer-links a {
     color: white;
     font-size: 1.1em;
     transition: color 0.3s;
 }
 
-footer .footer-links li a:hover {
-    color: #f0a500; /* Golden accent on hover */
-}
-
-footer .copyright {
-    font-size: 0.9em;
-    color: #ccc; /* Lighter gray for copyright text */
-    margin-top: 10px;
-}
-
-/* Media Queries for Footer */
-@media (max-width: 768px) {
-    footer .footer-links {
-        flex-direction: column; /* Stack the links on smaller screens */
-        align-items: center; /* Center the links */
-    }
-
-    footer .footer-links li {
-        margin-bottom: 10px; /* Add space between stacked links */
-    }
-}
-
-/* Navbar Styles */
-header {
-    width: 100%;
-    background-color: #6f4e37; /* Coffee brown background */
-    padding: 10px 20px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-}
-
-nav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-nav .logo {
-    font-size: 2em;
-    font-family: 'Georgia', serif;
-}
-nav .logo h1 {
-    color: white;
-}
-
-nav .menu {
-    display: flex;
-    gap: 20px;
-}
-
-nav .hamburger {
-    display: none;
-    cursor: pointer;
-    flex-direction: column;
-    gap: 5px;
-    width: 25px;
-    height: 20px;
-    justify-content: space-between;
-    background-color: transparent;
-    border: none;
-}
-
-nav .hamburger div {
-    background-color: white;
-    height: 4px;
-    width: 100%;
-}
-
-@media (max-width: 768px) {
-    .menu {
-        display: none;
-        flex-direction: column;
-        gap: 10px;
-        background-color: #6f4e37;
-        padding: 20px;
-        position: absolute;
-        top: 60px;
-        right: 0;
-        width: 250px;
-        border-radius: 5px;
-    }
-
-    .menu.show {
-        display: flex;
-    }
-
-    .hamburger {
-        display: flex;
-    }
-}
-/* Hamburger Menu */
-.hamburger {
-    display: none;
-    flex-direction: column;
-    gap: 5px;
-    cursor: pointer;
-}
-
-.hamburger div {
-    width: 30px;
-    height: 3px;
-    background-color: white;
-}
-
-/* Mobile Menu */
-.show {
-    display: block !important;
-}
-
-@media (max-width: 768px) {
-    .menu {
-        display: none;
-        flex-direction: column;
-        width: 100%;
-        background-color: #333;
-    }
-
-    .menu li {
-        text-align: center;
-        margin: 10px 0;
-    }
-
-    .hamburger {
-        display: flex;
-    }
-
-    .menu li a {
-        padding: 15px;
-        font-size: 18px;
-    }
+footer .footer-links a:hover {
+    color: #f0a500; /* Golden hover effect */
 }
