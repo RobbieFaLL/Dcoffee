@@ -3,48 +3,75 @@
 {% block content %}
 {% load static %}
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dcoffee - Home</title>
-</head>
+<main>
+    <!-- Hero Section -->
+    <section id="hero">
+        <div class="hero-content">
+            <h2>Welcome to Dcoffee</h2>
+            <p>Your perfect brew, every time.</p>
+            <a href="#products" class="btn">Shop Now</a>
+        </div>
+    </section>
 
-    <header>
+    <!-- About Us Section -->
+    <section id="about">
+        <h2>About Us</h2>
+        <p>Dcoffee is your trusted source for premium coffee blends. We believe in the art of brewing and delivering exceptional flavor with every cup.</p>
+    </section>
 
-    </header>
-
-    <main>
-        <section id="hero">
-            <!-- Move the Welcome text below the logo -->
-            <div class="hero-content">
-                <h2>Welcome to Dcoffee</h2> <!-- Changed text color for visibility -->
-                <p>Your perfect brew, every time.</p>
-                <a href="#products" class="btn">Shop Now</a>
+    <!-- Products Section -->
+    <section id="products">
+        <h2>Featured Products</h2>
+        <div class="product-grid">
+            <div class="product">
+                <img src="{% static 'images/americano.png' %}" alt="Americano">
+                <h3>Americano</h3>
+                <p>Kickstart your morning with our Americano—smooth, bold, and perfectly balanced, featuring a rich espresso base diluted with hot water for a clean, satisfying taste.</p>
             </div>
-        </section>
-
-        <section id="about">
-            <h2>About Us</h2>
-            <p>Dcoffee is your trusted source for premium coffee blends. We believe in the art of brewing and delivering exceptional flavor with every cup.</p>
-        </section>
-
-        <section id="products">
-            <h2>Featured Products</h2>
-            <div class="product-grid">
-                <div class="product">
-                    <img src="{% static 'images/coffee1.png' %}" alt="A smooth blend coffee for the perfect start to your day">
-                    <h3>Morning Bliss</h3>
-                    <p>A smooth blend for the perfect start to your day.</p>
-                </div>
-                <div class="product">
-                    <img src="{% static 'images/coffee2.png' %}" alt="A rich and mellow coffee for relaxing in the evening">
-                    <h3>Evening Relax</h3>
-                    <p>Unwind with a rich and mellow roast.</p>
-                </div>
+            <div class="product">
+                <img src="{% static 'images/flatwhite.png' %}" alt="Flat White">
+                <h3>Flat White</h3>
+                <p>Relax with a velvety Flat White—rich, smooth, and mellow, made with a double shot of espresso and microfoam for a creamy texture that’s full of flavor.</p>
             </div>
-        </section>
-    </main>
+            <div class="product">
+                <img src="{% static 'images/espresso.png' %}" alt="Espresso">
+                <h3>Espresso</h3>
+                <p>Savor the richness of our Espresso—intense, full-bodied, and a true coffee lover's delight, offering a concentrated shot of dark, aromatic coffee.</p>
+            </div>
+            <div class="product">
+                <img src="{% static 'images/hotchocolate.png' %}" alt="Hot Chocolate">
+                <h3>Hot Chocolate</h3>
+                <p>Treat yourself to our decadent Hot Chocolate—creamy, rich, and perfect for satisfying your sweet cravings, made with smooth chocolate and velvety milk.</p>
+            </div>
+            <div class="product">
+                <img src="{% static 'images/latte.png' %}" alt="Latte">
+                <h3>Latte</h3>
+                <p>Enjoy the smooth harmony of espresso and steamed milk in our Latte—a timeless, comforting classic, lightly brewed for a mellow, balanced taste.</p>
+            </div>
+            <div class="product">
+                <img src="{% static 'images/mocha.png' %}" alt="Mocha">
+                <h3>Mocha</h3>
+                <p>Indulge in our Mocha—an irresistible fusion of rich espresso, creamy chocolate, and steamed milk, offering the perfect blend of sweetness and bold coffee.</p>
+            </div>
+            <div class="product">
+                <img src="{% static 'images/Capuccino.png' %}" alt="Cappuccino">
+                <h3>Cappuccino</h3>
+                <p>Enjoy the classic Cappuccino—a perfectly balanced mix of espresso, steamed milk, and frothy milk foam, creating a rich yet airy experience.</p>
+            </div>
+            <div class="product">
+                <img src="{% static 'images/Macchiato.png' %}" alt="Macchiato">
+                <h3>Macchiato</h3>
+                <p>Experience the bold flavor of our Macchiato—espresso marked with a small amount of foamed milk for a strong, aromatic taste with just a hint of creaminess.</p>
+            </div>
+        </div>
+        <div class="order-btn-wrapper">
+            <div class="order-btn">
+                <button class="btn" onclick="window.location.href='{% url 'order' %}'">Order Here</button>
+            </div>
+        </div>
+        
+        
+    </section>
+</main>
 
 {% endblock %}

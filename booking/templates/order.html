@@ -52,7 +52,7 @@
             <div class="checkbox-group">
                 {% for choice in form.flavours %}
                     <div>
-                        <label for="{{ choice.id_for_label }}">{{ choice.choice_label }}</label>
+                        <label for="{{ choice.id_for_label }}"></label>
                         {{ choice|add_class:"flavour-checkbox" }}  <!-- Add class for JS -->
                     </div>
                 {% endfor %}
@@ -70,7 +70,7 @@
     </div>
 </div>
 
-
+<script src="{% static 'js/order.js' %}"></script>
 </body>
 </html>
 {%endblock%}

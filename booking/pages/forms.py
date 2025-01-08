@@ -65,13 +65,18 @@ class CoffeeOrderForm(forms.ModelForm):
     
     # Flavouring Selection (Max 3 flavours)
     flavours = forms.MultipleChoiceField(choices=[
-        ('Vanilla', 'Vanilla'),
-        ('Caramel', 'Caramel'),
         ('Hazelnut', 'Hazelnut'),
+        ('Caramel', 'Caramel'),
         ('Chocolate', 'Chocolate'),
         ('Cinnamon', 'Cinnamon'),
-        ('Mint', 'Mint'),
-        ('Almond', 'Almond'),
+        ('Peppermint', 'Peppermint'),
+        ('Vanilla', 'Vanilla'),
+        ('Salted Caramel', 'Salted Caramel'),
+        ('5 Spice', '5 Spice'),
+        ('Truffle', 'Truffle'),
+        ('Paprika', 'Paprika'),
+        ('Turmeric', 'Turmeric'),
+        ("Lion's Mane", "Lion's Mane"),
     ], widget=forms.CheckboxSelectMultiple, required=False)
 
     class Meta:

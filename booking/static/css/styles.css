@@ -9,6 +9,7 @@ body {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
+    justify-content: space-between; /* Ensure footer stays at bottom if content is small */
 }
 
 a {
@@ -72,28 +73,25 @@ header nav ul li a:hover {
 
 /* Logout Button Styling */
 .logout-button {
-    padding: 5px 10px;  /* Smaller padding */
-    font-size: 12px;     /* Smaller font size */
-    background-color: #007bff; /* Blue color (you can change it to match your theme) */
-    color: white;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
+    background: transparent; /* Makes the background transparent */
+    border: none; /* Removes any border */
+    color: inherit; /* Inherits text color from parent, or set a specific color like white or black */
+    text-decoration: none; /* Removes underline from the link */
+    padding: 10px 20px; /* Adjust padding as needed */
+    font-size: 16px; /* Adjust font size */
+    cursor: pointer; /* Makes it look like a clickable button */
+    transition: color 0.3s ease; /* Smooth color transition */
 }
 
 .logout-button:hover {
-    background-color: #0056b3; /* Darker blue when hovering */
-}
-
-.logout-button:focus {
-    outline: none;  /* Removes focus outline */
+    color: #e9dfdf; /* Changes text color on hover */
 }
 
 /* Hero Section */
 #hero h2 {
     font-size: 2.5em;
     margin-bottom: 10px;
-    color: #f4f1f1; /* Dark text color for visibility */
+    color: #f4f1f1; /* Light text color for visibility */
 }
 
 #hero p {
@@ -140,18 +138,24 @@ header nav ul li a:hover {
 #products {
     padding: 40px 20px;
     background-color: #fff;
+    max-width: 1200px; /* Limit the width on larger screens to avoid stretching */
+    margin: 0 auto; /* Center the content horizontally */
 }
 
 #products h2 {
     text-align: center;
     margin-bottom: 30px;
-    font-size: 2em;
+    font-size: 2.5em; /* Larger heading for better visibility */
+    color: #333;
 }
 
 .product-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 20px;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* Auto-fill with a minimum column width */
+    gap: 50px;
+    grid-auto-rows: 1fr; /* Ensures uniform row heights */
+    padding: 0 20px; /* Adds padding for better spacing */
+    justify-items: center; /* Center items within their grid cells */
 }
 
 .product {
@@ -161,16 +165,21 @@ header nav ul li a:hover {
     padding: 20px;
     text-align: center;
     transition: transform 0.3s, box-shadow 0.3s;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* Subtle default shadow */
+    max-width: 300px; /* Prevents the product from becoming too wide */
+    width: 100%;
 }
 
 .product img {
     width: 100%;
+    max-width: 250px; /* Adjust for better image size control */
+    height: auto;
     border-radius: 10px;
     margin-bottom: 10px;
 }
 
 .product h3 {
-    font-size: 1.5em;
+    font-size: 1.6em; /* Slightly increased font size */
     margin-bottom: 10px;
     color: #6f4e37;
 }
@@ -181,16 +190,68 @@ header nav ul li a:hover {
 }
 
 .product:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    transform: translateY(-8px); /* Slightly higher movement on hover */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
 }
 
-/* Order Form Styles */
+/* Media queries for responsiveness */
+@media (max-width: 768px) {
+    #products h2 {
+        font-size: 2em; /* Adjusted for smaller screens */
+    }
+
+    .product-grid {
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* Smaller columns for tablets */
+    }
+
+    .product img {
+        max-width: 200px; /* Adjust image size for smaller devices */
+    }
+}
+
+@media (max-width: 480px) {
+    #products h2 {
+        font-size: 1.8em; /* Even smaller font for mobile */
+    }
+
+    .product-grid {
+        grid-template-columns: 1fr; /* Stack products in a single column on mobile */
+    }
+
+    .product img {
+        max-width: 180px; /* Adjust image size for mobile */
+    }
+}
+
+@media (min-width: 1200px) {
+    #products {
+        padding: 60px 40px; /* Increased padding for large screens */
+    }
+
+    .product-grid {
+        grid-template-columns: repeat(4, 1fr); /* Set to 4 columns for large screens */
+        gap: 50px; /* Increase space between items */
+    }
+}
+
+@media (min-width: 1600px) {
+    #products {
+        max-width: 1400px; /* Expand the max-width for very large screens */
+        padding: 80px 40px; /* Increased padding for very large screens */
+    }
+
+    .product-grid {
+        grid-template-columns: repeat(5, 1fr); /* Set to 5 columns for extra-large screens */
+        gap: 50px; /* Increase space between items */
+    }
+}
+
+/* Form Styles */
 form {
     background-color: #fff;
     padding: 20px;
     margin: 20px auto;
-    max-width: 100%;
+    width: 95%;
     border-radius: 10px;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
 }
@@ -212,7 +273,7 @@ form input[type="checkbox"],
 form input[type="text"],
 form input[type="email"],
 form input[type="password"] {
-    width: 100%;
+    width: 95%;
     padding: 10px;
     margin-bottom: 15px;
     font-size: 1em;
@@ -273,102 +334,202 @@ form button:hover {
     text-align: center;
 }
 
-/* Modal Styles */
-.modal {
-    display: none; /* Hidden by default */
-    position: fixed; /* Fixed at the center of the screen */
-    z-index: 1; /* Sit on top */
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    overflow: auto;
-    background-color: rgba(0, 0, 0, 0.4); /* Black with opacity */
-    padding-top: 100px;
-}
-
-.modal-content {
-    background-color: white;
-    margin: 5% auto;
-    padding: 20px;
-    border: 1px solid #888;
-    width: 80%;
-    max-width: 400px;
-    text-align: center;
+/* Button Styling */
+.btn {
+    padding: 10px 20px;
+    font-size: 1em;
     border-radius: 5px;
-}
-
-.close {
-    color: #aaa;
-    font-size: 28px;
-    font-weight: bold;
-    position: absolute;
-    top: 10px;
-    right: 15px;
+    background-color: #6f4e37;
+    color: white;
+    text-align: center;
     cursor: pointer;
+    transition: background-color 0.3s ease;
 }
 
-.close:hover,
-.close:focus {
-    color: black;
-    text-decoration: none;
+.btn:hover {
+    background-color: #f0a500;
+}
+
+/* Order Button Section */
+.order-btn-wrapper {
+    display: flex;
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+}
+
+.order-btn {
+    padding: 20px; /* Optional padding around the button */
+}
+
+.order-btn .btn {
+    background-color: #6f4e37; /* Coffee brown background */
+    color: white;
+    padding: 12px 20px;
+    font-size: 1.2em;
+    border-radius: 5px;
+    border: none;
     cursor: pointer;
+    transition: background-color 0.3s;
 }
 
-/* Footer */
+.order-btn .btn:hover {
+    background-color: #f0a500; /* Golden accent */
+}
+
+/* Footer Styles */
 footer {
-    background-color: #333;
+    background-color: #6f4e37; /* Matching coffee brown background */
     color: white;
     padding: 20px 0;
-    text-align: center;
-    margin-top: auto;
-}
-
-footer p {
-    margin: 0;
-    font-size: 0.9em;
-}
-
-footer .social {
-    margin-top: 10px;
-}
-
-footer .social a {
-    margin: 0 10px;
-    color: #f0a500;
+    text-align: center; /* Centers the text */
     font-size: 1em;
+}
+
+footer .footer-links {
+    list-style: none;
+    display: flex;
+    justify-content: center; /* Center the footer links */
+    gap: 20px; /* Space between links */
+    margin-bottom: 20px; /* Space between links and copyright */
+}
+
+footer .footer-links li {
+    display: inline-block;
+}
+
+footer .footer-links li a {
+    color: white;
+    font-size: 1.1em;
     transition: color 0.3s;
 }
 
-footer .social a:hover {
-    color: #fff;
+footer .footer-links li a:hover {
+    color: #f0a500; /* Golden accent on hover */
 }
 
-/* Responsive Styles */
+footer .copyright {
+    font-size: 0.9em;
+    color: #ccc; /* Lighter gray for copyright text */
+    margin-top: 10px;
+}
+
+/* Media Queries for Footer */
 @media (max-width: 768px) {
-    header nav ul {
-        flex-direction: column;
-        align-items: center;
+    footer .footer-links {
+        flex-direction: column; /* Stack the links on smaller screens */
+        align-items: center; /* Center the links */
     }
 
-    #hero {
-        height: 50vh;
-    }
-
-    .product-grid {
-        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    footer .footer-links li {
+        margin-bottom: 10px; /* Add space between stacked links */
     }
 }
 
-@media (max-width: 600px) {
-    #about,
-    #products,
-    .product {
+/* Navbar Styles */
+header {
+    width: 100%;
+    background-color: #6f4e37; /* Coffee brown background */
+    padding: 10px 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+nav .logo {
+    font-size: 2em;
+    font-family: 'Georgia', serif;
+}
+nav .logo h1 {
+    color: white;
+}
+
+nav .menu {
+    display: flex;
+    gap: 20px;
+}
+
+nav .hamburger {
+    display: none;
+    cursor: pointer;
+    flex-direction: column;
+    gap: 5px;
+    width: 25px;
+    height: 20px;
+    justify-content: space-between;
+    background-color: transparent;
+    border: none;
+}
+
+nav .hamburger div {
+    background-color: white;
+    height: 4px;
+    width: 100%;
+}
+
+@media (max-width: 768px) {
+    .menu {
+        display: none;
+        flex-direction: column;
+        gap: 10px;
+        background-color: #6f4e37;
         padding: 20px;
+        position: absolute;
+        top: 60px;
+        right: 0;
+        width: 250px;
+        border-radius: 5px;
     }
 
-    form {
-        margin: 10px;
+    .menu.show {
+        display: flex;
+    }
+
+    .hamburger {
+        display: flex;
+    }
+}
+/* Hamburger Menu */
+.hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+}
+
+.hamburger div {
+    width: 30px;
+    height: 3px;
+    background-color: white;
+}
+
+/* Mobile Menu */
+.show {
+    display: block !important;
+}
+
+@media (max-width: 768px) {
+    .menu {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        background-color: #333;
+    }
+
+    .menu li {
+        text-align: center;
+        margin: 10px 0;
+    }
+
+    .hamburger {
+        display: flex;
+    }
+
+    .menu li a {
         padding: 15px;
+        font-size: 18px;
     }
 }
