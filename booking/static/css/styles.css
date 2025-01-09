@@ -39,6 +39,15 @@ header, header nav {
     color: #f0a500; /* Golden hover effect */
 }
 
+.navbar-brand h1 {
+    color: white;
+    transition: color 0.3s ease;
+}
+
+.navbar-brand h1:hover {
+    color: #f0a500; /* Golden hover effect */
+}
+
 /* Logout Button Styling */
 .logout-button {
     background: transparent; /* Makes the background transparent */
