@@ -51,6 +51,18 @@ class CoffeeOrder(models.Model):
         ("Lion's Mane", "Lion's Mane"),
     ]
 
+    # Pastry choices
+    PASTRY_CHOICES = [
+        ('Croissant', 'Croissant'),
+        ('Cinnamon Swirl', 'Cinnamon Swirl'),
+        ('Chocolate Chip', 'Chocolate Chip'),
+        ('Cinnamon Bun', 'Cinnamon Bun'),
+        ('Apple Turnover', 'Apple Turnover'),
+        ('Cheese Twist', 'Cheese Twist'),
+        ('Raspberry Tart','Raspberry Tart'),
+        ('Pain aux raisin','Pain aux raisin')
+    ]
+
     # Model fields
     coffee = models.CharField(max_length=50, choices=COFFEE_CHOICES)
     shot = models.CharField(max_length=50, choices=SHOT_CHOICES, blank=True, null=True)
@@ -58,9 +70,12 @@ class CoffeeOrder(models.Model):
     milk_option1 = models.CharField(max_length=50, choices=MILK_CHOICES, blank=True, null=True)
     milk_option2 = models.CharField(max_length=50, choices=MILK_CHOICES, blank=True, null=True)
     flavours = models.JSONField(default=list)  # To store up to 3 selected flavours
+    pastries = models.JSONField(default=list)  # To store selected pastries
 
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        # This method provides a string representation for each order, including coffee type, milk choice, and selected flavours.
-        return f"{self.coffee} - {self.milk} ({', '.join(self.flavours) if self.flavours else 'No Flavours'})"
+        # String representation for the order
+        pastries_display = ', '.join(self.pastries) if self.pastries else 'No Pastries'
+        flavours_display = ', '.join(self.flavours) if self.flavours else 'No Flavours'
+        return f"{self.coffee} - {self.milk} (Flavours: {flavours_display}, Pastries: {pastries_display})"

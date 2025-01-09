@@ -56,6 +56,22 @@
             </div>
         </fieldset>
 
+<fieldset>
+    <legend>Pastries (£1.50 each)</legend>
+    <div class="checkbox-group">
+        {% for choice in form.pastries %}
+            <div>
+                <label for="{{ choice.id_for_label }}"></label>
+                {{ choice|add_class:"pastry-checkbox" }}  <!-- Add class for JS -->
+            </div>
+        {% endfor %}
+    </div>
+</fieldset>
+
+        
+        
+        
+
         <button type="submit">Submit</button>
     </form>
 

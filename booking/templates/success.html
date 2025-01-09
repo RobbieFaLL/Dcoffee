@@ -9,23 +9,34 @@
 
     <h2>Order Details:</h2>
     <ul>
-        <li>Coffee: {{ coffee_order.coffee }}</li>
-        <li>Milk: {{ coffee_order.milk }}</li>
+        <!-- Coffee Price -->
+        <li>Coffee: {{ coffee_order.coffee }} (£{{ coffee_price|default:"0.00" }})</li>
+
+        <!-- Milk Price -->
+        <li>Milk: {{ coffee_order.milk }} (£{{ milk_price|default:"0.00" }})</li>
+
         {% if coffee_order.shot %}
-            <li>Shot: {{ coffee_order.shot }}</li>
+            <!-- Shot Price -->
+            <li>Shot: {{ coffee_order.shot }} (£{{ shot_price|default:"0.00" }})</li>
         {% endif %}
+
         {% if coffee_order.flavours %}
-            <li>Flavours: {{ coffee_order.flavours | join:", " }}</li>
+            <!-- Flavour Price -->
+            <li>Flavours: {{ coffee_order.flavours | join:", " }} (£{{ flavours_price|default:"0.00" }})</li>
+        {% endif %}
+
+        {% if coffee_order.pastries %}
+            <!-- Pastry Price -->
+            <li>Pastries: {{ coffee_order.pastries | join:", " }} (£{{ pastries_price|default:"0.00" }})</li>
+        {% else %}
+            <li>No pastries selected.</li>
         {% endif %}
     </ul>
 
-    <h3>Total Price: £{{ total_price }}</h3>
+    <h3>Total Price: £{{ total_price|default:"0.00" }}</h3>
 {% else %}
     <p>No orders placed yet. Place an order to see details here.</p>
 {% endif %}
-
-<!-- Link to return to home -->
-<a href="{% url 'index' %}">Back to Home</a>
 
 <h3>View a Previous Order:</h3>
 <!-- Form to select a previous order -->
@@ -38,4 +49,8 @@
     </select>
     <button type="submit">View Order</button>
 </form>
+
+<!-- Link to return to home -->
+<a href="{% url 'index' %}">Back to Home</a>
+
 {% endblock %}

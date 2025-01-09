@@ -20,20 +20,21 @@ def order_view(request):
 
 # Success page view after an order is placed
 def success_view(request):
-    # Get the last order or set to None if no orders exist
     coffee_order = CoffeeOrder.objects.last()
-    
-    # Handle the case where no orders exist
+
     if not coffee_order:
-        # Pass empty data to the template
         return render(request, 'success.html', {
             'coffee_order': None,
             'total_price': 0,
-            'flavours_json': None,
+            'coffee_price': 0,
+            'milk_price': 0,
+            'shot_price': 0,
+            'flavours_price': 0,
+            'pastries_price': 0,
             'all_orders': CoffeeOrder.objects.all(),
         })
-    
-    # Price calculation logic
+
+    # Predefined prices for items
     prices = {
         'Espresso': 1.50,
         'Americano': 2.00,
@@ -44,32 +45,33 @@ def success_view(request):
         'Mocha': 3.00,
         'Hot Chocolate': 3.00,
         'Milk': 2.00,
-        'Syrup': 0.75
+        'Syrup': 0.75,
+        'Pastry': 1.50,
+        'Shot': {'Double': 1.50, 'Triple': 3.00}  # Prices for shot types
     }
-    
-    total_price = prices.get(coffee_order.coffee, 0)
-    if coffee_order.shot:
-        if coffee_order.shot == 'Double':
-            total_price += 0.50
-        elif coffee_order.shot == 'Triple':
-            total_price += 1.00
-    
-    if coffee_order.milk == 'Half and Half':
-        total_price += prices['Milk'] * 2
-    else:
-        total_price += prices['Milk']
-    
-    if coffee_order.flavours:
-        total_price += len(coffee_order.flavours) * prices['Syrup']
-    
-    # Get all previous orders to display in the dropdown
+
+    # Calculate prices for coffee, milk, shot, flavours, and pastries
+    coffee_price = prices.get(coffee_order.coffee, 0)  # Use the string directly
+    milk_price = prices['Milk'] if coffee_order.milk else 0
+    shot_price = prices['Shot'].get(coffee_order.shot, 0) if coffee_order.shot else 0
+    flavours_price = len(coffee_order.flavours) * prices['Syrup'] if coffee_order.flavours else 0
+    pastries_price = len(coffee_order.pastries) * prices['Pastry'] if coffee_order.pastries else 0
+
+    # Calculate total price
+    total_price = coffee_price + milk_price + shot_price + flavours_price + pastries_price
+
     all_orders = CoffeeOrder.objects.all()
 
+    # Pass all necessary information to the template
     return render(request, 'success.html', {
         'coffee_order': coffee_order,
         'total_price': total_price,
-        'flavours_json': coffee_order.flavours,
-        'all_orders': all_orders,  # Pass all previous orders to the template
+        'coffee_price': coffee_price,
+        'milk_price': milk_price,
+        'shot_price': shot_price,
+        'flavours_price': flavours_price,
+        'pastries_price': pastries_price,
+        'all_orders': all_orders,
     })
 
 
@@ -78,10 +80,46 @@ def view_order(request):
     order_id = request.GET.get('order_select')  # Get the selected order ID
     if order_id:
         coffee_order = get_object_or_404(CoffeeOrder, id=order_id)
-        return render(request, 'order_details.html', {'coffee_order': coffee_order})  # Render the details of the selected order
+
+        # Predefined prices for items
+        prices = {
+            'Espresso': 1.50,
+            'Americano': 2.00,
+            'Latte': 2.50,
+            'Cappuccino': 2.50,
+            'Flat White': 2.50,
+            'Macchiato': 2.00,
+            'Mocha': 3.00,
+            'Hot Chocolate': 3.00,
+            'Milk': 2.00,
+            'Syrup': 0.75,
+            'Pastry': 1.50,
+            'Shot': {'Double': 1.50, 'Triple': 3.00}  # Prices for shot types
+        }
+
+        # Calculate prices for coffee, milk, shot, flavours, and pastries
+        coffee_price = prices.get(coffee_order.coffee, 0)
+        milk_price = prices['Milk'] if coffee_order.milk else 0
+        shot_price = prices['Shot'].get(coffee_order.shot, 0) if coffee_order.shot else 0
+        flavours_price = len(coffee_order.flavours) * prices['Syrup'] if coffee_order.flavours else 0
+        pastries_price = len(coffee_order.pastries) * prices['Pastry'] if coffee_order.pastries else 0
+
+        # Calculate total price
+        total_price = coffee_price + milk_price + shot_price + flavours_price + pastries_price
+
+        # Pass prices to the template
+        return render(request, 'order_details.html', {
+            'coffee_order': coffee_order,
+            'coffee_price': coffee_price,
+            'milk_price': milk_price,
+            'shot_price': shot_price,
+            'flavours_price': flavours_price,
+            'pastries_price': pastries_price,
+            'total_price': total_price,
+        })
     else:
         return redirect('index')  # Redirect to home if no order selected
-
+    
 def terms_view(request):
     return render(request, 'terms.html')
 

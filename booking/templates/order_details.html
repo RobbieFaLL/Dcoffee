@@ -6,15 +6,19 @@
 
 {% if coffee_order %}
     <ul>
-        <li>Coffee: {{ coffee_order.coffee }}</li>
-        <li>Milk: {{ coffee_order.milk }}</li>
+        <li>Coffee: {{ coffee_order.coffee }} - £{{ coffee_price }}</li>
+        <li>Milk: {% if coffee_order.milk %}{{ coffee_order.get_milk_display }}{% else %}None{% endif %} - £{{ milk_price }}</li>
         {% if coffee_order.shot %}
-            <li>Shot: {{ coffee_order.shot }}</li>
+            <li>Shot: {{ coffee_order.shot }} - £{{ shot_price }}</li>
         {% endif %}
         {% if coffee_order.flavours %}
-            <li>Flavours: {{ coffee_order.flavours | join:", " }}</li>
+            <li>Flavours: {{ coffee_order.flavours | join:", " }} - £{{ flavours_price }}</li>
+        {% endif %}
+        {% if coffee_order.pastries %}
+            <li>Pastries: {{ coffee_order.pastries | join:", " }} - £{{ pastries_price }}</li>
         {% endif %}
     </ul>
+    <p><strong>Total Price: £{{ total_price }}</strong></p>
 {% else %}
     <p>No details available for this order.</p>
 {% endif %}

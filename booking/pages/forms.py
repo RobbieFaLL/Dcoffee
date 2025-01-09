@@ -88,3 +88,22 @@ class CoffeeOrderForm(forms.ModelForm):
         if len(flavours) > 3:
             raise forms.ValidationError("You can select a maximum of 3 flavours.")
         return flavours
+
+    pastries = forms.MultipleChoiceField(
+            choices=[
+                ('Croissant', 'Croissant'),
+                ('Cinnamon Swirl', 'Cinnamon Swirl'),
+                ('Chocolate Chip', 'Chocolate Chip'),
+                ('Cinnamon Bun', 'Cinnamon Bun'),
+                ('Apple Turnover', 'Apple Turnover'),
+                ('Cheese Twist', 'Cheese Twist'),
+                ('Raspberry Tart','Raspberry Tart'),
+                ('Pain aux raisin','Pain aux raisin')
+            ],
+            widget=forms.CheckboxSelectMultiple(attrs={'class': 'pastry-checkbox'}),
+            required=False,
+        )
+
+    class Meta:
+        model = CoffeeOrder
+        fields = ['coffee', 'shot', 'milk', 'milk_option1', 'milk_option2', 'flavours', 'pastries']
