@@ -120,6 +120,33 @@
         
         
     </section>
+    <section id="products">
+        <h2>Meeting rooms available to book:</h2>
+        <div class="product-grid">
+            <div class="product">
+                <img src="{% static 'images/room1.png' %}" alt="The Oasis">
+                <h3>The Oasis</h3>
+                <p>A serene space designed for focused discussions and strategic planning, offering a tranquil environment to inspire creativity and collaboration.</p>
+            </div>
+            <div class="product">
+                <img src="{% static 'images/room2.png' %}" alt="The Innovation Hub">
+                <h3>The Innovation Hub</h3>
+                <p>Equipped with modern amenities, this room fosters brainstorming sessions and innovative thinking, ideal for teams aiming to develop groundbreaking ideas.</p>
+            </div>
+            <div class="product">
+                <img src="{% static 'images/room3.png' %}" alt="The Executive Suite">
+                <h3>The Executive Suite</h3>
+                <p>Designed for high-level meetings and presentations, this room offers a professional setting with state-of-the-art technology to support impactful discussions.</p>
+            </div>
+        </div>            
+    <div class="order-btn-wrapper">
+        <div class="order-btn">
+            <button class="btn" onclick="window.location.href='{% url 'booking' %}'">book here</button>
+        </div>
+    </div>
+        
+        
+    </section>
 </main>
 
 {% endblock %}
