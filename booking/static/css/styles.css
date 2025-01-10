@@ -129,7 +129,7 @@ header, header nav {
 .product-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* Auto-fill with a minimum column width */
-    gap: 50px;
+    gap: 15px;
     grid-auto-rows: 1fr; /* Ensures uniform row heights */
     padding: 0 20px; /* Adds padding for better spacing */
     justify-items: center; /* Center items within their grid cells */
@@ -202,24 +202,24 @@ header, header nav {
 
 @media (min-width: 1200px) {
     #products {
-        padding: 60px 40px; /* Increased padding for large screens */
+        padding: 20px 20px; /* Increased padding for large screens */
     }
 
     .product-grid {
         grid-template-columns: repeat(4, 1fr); /* Set to 4 columns for large screens */
-        gap: 50px; /* Increase space between items */
+        gap: 15px; /* Increase space between items */
     }
 }
 
 @media (min-width: 1600px) {
     #products {
         max-width: 1400px; /* Expand the max-width for very large screens */
-        padding: 80px 40px; /* Increased padding for very large screens */
+        padding: 20px 20px; /* Increased padding for very large screens */
     }
 
     .product-grid {
         grid-template-columns: repeat(5, 1fr); /* Set to 5 columns for extra-large screens */
-        gap: 50px; /* Increase space between items */
+        gap: 10px; /* Increase space between items */
     }
 }
 
