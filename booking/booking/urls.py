@@ -22,3 +22,8 @@ urlpatterns = [
     path('', include ('bookingsys.urls')),
     path('', include('pages.urls')),
 ]
+
+
+admin.site.site_title = "D'coffee"
+admin.site.site_header = "D'coffee admin"
+admin.site.index_title = "Site admininistration"
