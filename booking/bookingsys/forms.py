@@ -5,6 +5,15 @@ from datetime import timedelta
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate
 
+from django import forms
+from .models import Booking
+
+from django import forms
+from .models import Booking
+
+from django import forms
+from .models import Booking
+
 class BookingForm(forms.ModelForm):
     class Meta:
         model = Booking
@@ -12,17 +21,14 @@ class BookingForm(forms.ModelForm):
         widgets = {
             'start_time': forms.DateTimeInput(attrs={'type': 'datetime-local'}),
             'end_time': forms.DateTimeInput(attrs={'type': 'datetime-local'}),
+            'user': forms.TextInput(attrs={'readonly': 'readonly'})  # Make the user field readonly
         }
 
-    def clean(self):
-        cleaned_data = super().clean()
-        start_time = cleaned_data.get('start_time')
-        end_time = cleaned_data.get('end_time')
-        
-        if start_time and end_time and end_time <= start_time:
-            raise forms.ValidationError("End time must be after the start time.")
-
-        return cleaned_data
+    def __init__(self, *args, **kwargs):
+        user = kwargs.pop('user', None)  # Extract the user from the keyword arguments
+        super().__init__(*args, **kwargs)
+        if user:
+            self.fields['user'].initial = user.username  # Set the current user's username as the initial value for the 'user' field
 
 class LoginForm(forms.Form):
     username = forms.CharField(max_length=100)

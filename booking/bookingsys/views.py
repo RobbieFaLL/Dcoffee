@@ -5,25 +5,22 @@ from django.contrib import messages
 from django.contrib.auth.forms import UserCreationForm
 from django.core.exceptions import ValidationError
 from datetime import datetime
-from datetime import timedelta
 from django.contrib.auth import login, authenticate, logout
-from django.contrib.auth.decorators import login_required  # Import the login_required decorator
+from django.contrib.auth.decorators import login_required
 
 # Booking View
 @login_required  # Ensure that the user is logged in before they can access this view
 def booking(request):
     if request.method == 'POST':
-        form = BookingForm(request.POST)
+        form = BookingForm(request.POST, user=request.user)  # Pass the logged-in user to the form
         if form.is_valid():
-            # Assign the logged-in user to the booking before saving
-            form.instance.user = request.user
             form.save()
 
             # Success message after form submission
             messages.success(request, "Your booking was successful!")
             return redirect('booking_success')  # Redirect to success page
     else:
-        form = BookingForm()
+        form = BookingForm(user=request.user)  # Pass the logged-in user to the form
 
     # Show available rooms for the user based on selected times
     rooms = ['Room 1', 'Room 2', 'Room 3']

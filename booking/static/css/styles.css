@@ -147,6 +147,91 @@ header, header nav {
     width: 100%;
 }
 
+/* Buy Now Button Styling */
+.product .buy-now-btn {
+    display: none; /* Hidden by default */
+    margin-top: 10px;
+}
+
+.product:hover .buy-now-btn {
+    display: block; /* Show on hover */
+}
+
+.buy-now-btn .btn {
+    background-color: #f0a500; /* Golden button */
+    color: #333;
+    padding: 10px 20px;
+    font-size: 1em;
+    border-radius: 5px;
+    text-transform: uppercase;
+    font-weight: bold;
+    text-decoration: none;
+    transition: background-color 0.3s;
+}
+
+.buy-now-btn .btn:hover {
+    background-color: #d48c00; /* Darker golden */
+    color: #fff;
+}
+
+/* General "Buy Now" Button Styles */
+.product .buy-now {
+    display: none;
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #6f4e37; /* Coffee brown */
+    color: white;
+    padding: 10px 20px;
+    font-size: 1em;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    z-index: 10;
+    transition: opacity 0.3s ease;
+}
+
+/* For Larger Screens (Hover Effect) */
+@media (min-width: 769px) {
+    .product {
+        position: relative;
+        transition: all 0.3s ease; /* Smooth transition for hover effects */
+    }
+
+    .product .buy-now {
+        display: none; /* Initially hidden */
+        opacity: 0; /* Start with hidden opacity */
+        transition: opacity 0.3s ease; /* Smooth fade-in effect */
+    }
+
+    .product:hover .buy-now {
+        display: block; /* Show on hover */
+        opacity: 1; /* Fade-in effect on hover */
+    }
+}
+
+/* For Smaller Screens (Click Effect) */
+@media (max-width: 768px) {
+    .product {
+        position: relative;
+        transition: all 0.3s ease; /* Smooth transition for click effects */
+    }
+
+    .product .buy-now {
+        display: none; /* Initially hidden */
+        opacity: 0; /* Start with hidden opacity */
+        transition: opacity 0.3s ease; /* Smooth fade-in effect */
+    }
+
+    .product.clicked .buy-now {
+        display: block; /* Show on click */
+        opacity: 1; /* Fade-in effect on click */
+    }
+}
+
+
+
 .product img {
     width: 100%;
     max-width: 250px; /* Adjust for better image size control */
